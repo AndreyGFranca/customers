@@ -105,7 +105,7 @@ class CustomerControllerIT extends IntegrationTestBase {
         .statusCode(HttpStatus.NOT_FOUND.value())
         .body("status", equalTo(404))
         .body("title", equalTo("Not found"))
-        .body("detail", equalTo("Customer with id " +created.getId() + " does not exists."));
+        .body("detail", equalTo("Customer with id " + created.getId() + " does not exists."));
   }
   
   @Test
@@ -118,7 +118,7 @@ class CustomerControllerIT extends IntegrationTestBase {
         .birthDate(LocalDate.of(1963, 10, 1))
         .gender(Gender.MALE.toString())
         .build();
-  
+    
     createCustomer(customer);
     
     given()
