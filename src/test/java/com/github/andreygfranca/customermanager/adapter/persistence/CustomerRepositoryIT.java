@@ -58,7 +58,6 @@ class CustomerRepositoryIT extends IntegrationTestBase {
     // Then
     assertThat(customer)
         .isNotEmpty()
-        .hasSize(1)
         .satisfies(it -> assertThat(it.get(0)).isEqualToComparingFieldByField(customerPersisted));
   }
   
