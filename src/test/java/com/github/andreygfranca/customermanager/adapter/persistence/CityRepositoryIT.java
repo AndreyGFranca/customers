@@ -58,7 +58,6 @@ class CityRepositoryIT extends IntegrationTestBase {
     // Then
     assertThat(cities)
         .isNotEmpty()
-        .hasSize(1)
-        .satisfies(it -> assertThat(it.get(0)).isEqualToComparingFieldByField(cityPersisted));
+        .satisfies(it -> assertThat(it.get(0)).isEqualToIgnoringGivenFields(cityPersisted, "id"));
   }
 }
