@@ -1,6 +1,6 @@
 package com.github.andreygfranca.customermanager.adapter.persistence.specification;
 
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CustomerCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerCriteriaDTO;
 import com.github.andreygfranca.customermanager.core.domain.Customer;
 import java.util.ArrayList;
 import java.util.List;

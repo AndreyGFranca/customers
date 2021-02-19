@@ -1,4 +1,4 @@
-package com.github.andreygfranca.customermanager.adapter.api.v1.model;
+package com.github.andreygfranca.customermanager.adapter.api.v1.model.customer;
 
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

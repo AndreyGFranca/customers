@@ -3,8 +3,10 @@ package com.github.andreygfranca.customermanager.adapter.api.v1.controller;
 import com.github.andreygfranca.customermanager.adapter.api.v1.BasePath;
 import com.github.andreygfranca.customermanager.adapter.api.v1.ResponseMessages;
 import com.github.andreygfranca.customermanager.adapter.api.v1.mapper.CustomerMapper;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CustomerCriteriaDTO;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CustomerDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerCreateDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerUpdateDTO;
 import com.github.andreygfranca.customermanager.core.domain.Customer;
 import com.github.andreygfranca.customermanager.core.port.output.customer.CreateCustomerPort;
 import com.github.andreygfranca.customermanager.core.port.output.customer.DeleteCustomerPort;
@@ -46,10 +48,10 @@ public class CustomerController {
       @ApiResponse(code = 200, message = ResponseMessages.MESSAGE_200),
       @ApiResponse(code = 404, message = ResponseMessages.MESSAGE_404),
   })
-  ResponseEntity<CustomerDTO> findById(@PathVariable Long id) {
-    CustomerDTO customerDTO = customerMapper.toDTO(readCustomerPort.findById(id));
+  ResponseEntity<CustomerResponseDTO> findById(@PathVariable Long id) {
+    CustomerResponseDTO customerResponseDTO = customerMapper.toDTO(readCustomerPort.findById(id));
     
-    return ResponseEntity.ok(customerDTO);
+    return ResponseEntity.ok(customerResponseDTO);
   }
   
   @PostMapping
@@ -57,8 +59,8 @@ public class CustomerController {
   @ApiResponses(value = {
       @ApiResponse(code = 201, message = ResponseMessages.MESSAGE_201),
   })
-  ResponseEntity<CustomerDTO> create(@Valid @RequestBody CustomerDTO customerDTO) {
-    Customer customer = customerMapper.toEntity(customerDTO);
+  ResponseEntity<CustomerResponseDTO> create(@Valid @RequestBody CustomerCreateDTO customerResponseDTO) {
+    Customer customer = customerMapper.toEntityCreate(customerResponseDTO);
     
     Customer customerCreated = createCustomerPort.create(customer);
     
@@ -83,8 +85,8 @@ public class CustomerController {
       @ApiResponse(code = 200, message = ResponseMessages.MESSAGE_200),
       @ApiResponse(code = 404, message = ResponseMessages.MESSAGE_404),
   })
-  ResponseEntity<CustomerDTO> update(@PathVariable Long id, @Valid @RequestBody CustomerDTO customerDTO) {
-    Customer customer = customerMapper.toEntity(customerDTO);
+  ResponseEntity<CustomerResponseDTO> update(@PathVariable Long id, @Valid @RequestBody CustomerUpdateDTO customerDTO) {
+    Customer customer = customerMapper.toEntityUpdate(customerDTO);
     
     Customer customerUpdated = updateCustomerPort.update(customer, id);
     
@@ -97,7 +99,7 @@ public class CustomerController {
       @ApiResponse(code = 200, message = ResponseMessages.MESSAGE_200),
       @ApiResponse(code = 404, message = ResponseMessages.MESSAGE_404),
   })
-  ResponseEntity<List<CustomerDTO>> search(@Valid CustomerCriteriaDTO customerCriteria) {
+  ResponseEntity<List<CustomerResponseDTO>> search(@Valid CustomerCriteriaDTO customerCriteria) {
     List<Customer> customers = readCustomerPort.search(customerCriteria);
     
     return ResponseEntity.ok(customerMapper.toListDTO(customers));

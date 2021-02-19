@@ -3,7 +3,7 @@ package com.github.andreygfranca.customermanager.adapter.persistence;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.andreygfranca.customermanager.IntegrationTestBase;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CustomerCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerCriteriaDTO;
 import com.github.andreygfranca.customermanager.core.domain.Customer;
 import com.github.andreygfranca.customermanager.core.domain.Gender;
 import java.util.List;

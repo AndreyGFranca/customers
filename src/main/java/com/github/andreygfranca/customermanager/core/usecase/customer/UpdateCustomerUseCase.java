@@ -19,10 +19,6 @@ public class UpdateCustomerUseCase implements UpdateCustomerPort {
         .orElseThrow(() -> new NotFoundException(String.format("Customer with id %s does not exists.", id.toString())));
     
     updatedCustomer.setName(customer.getName());
-    updatedCustomer.setAge(customer.getAge());
-    updatedCustomer.setBirthDate(customer.getBirthDate());
-    updatedCustomer.setCity(customer.getCity());
-    updatedCustomer.setGender(customer.getGender());
     
     return customerPersistencePort.update(updatedCustomer);
   }

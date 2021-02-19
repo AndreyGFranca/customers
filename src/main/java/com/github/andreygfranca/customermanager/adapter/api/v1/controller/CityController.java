@@ -3,8 +3,9 @@ package com.github.andreygfranca.customermanager.adapter.api.v1.controller;
 import com.github.andreygfranca.customermanager.adapter.api.v1.BasePath;
 import com.github.andreygfranca.customermanager.adapter.api.v1.ResponseMessages;
 import com.github.andreygfranca.customermanager.adapter.api.v1.mapper.CityMapper;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CityCriteriaDTO;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CityDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityCreateDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityResponseDTO;
 import com.github.andreygfranca.customermanager.core.domain.City;
 import com.github.andreygfranca.customermanager.core.port.output.city.CreateCityPort;
 import com.github.andreygfranca.customermanager.core.port.output.city.DeleteCityPort;
@@ -43,8 +44,8 @@ public class CityController {
       @ApiResponse(code = 200, message = ResponseMessages.MESSAGE_200),
       @ApiResponse(code = 404, message = ResponseMessages.MESSAGE_404),
   })
-  ResponseEntity<CityDTO> findById(@PathVariable Long id) {
-    CityDTO cityDTO = cityMapper.toDTO(readCityPort.findById(id));
+  ResponseEntity<CityResponseDTO> findById(@PathVariable Long id) {
+    CityResponseDTO cityDTO = cityMapper.toDTO(readCityPort.findById(id));
     
     return ResponseEntity.ok(cityDTO);
   }
@@ -54,8 +55,8 @@ public class CityController {
   @ApiResponses(value = {
       @ApiResponse(code = 201, message = ResponseMessages.MESSAGE_201),
   })
-  ResponseEntity<CityDTO> create(@Valid @RequestBody CityDTO cityDTO) {
-    City city = cityMapper.toEntity(cityDTO);
+  ResponseEntity<CityResponseDTO> create(@Valid @RequestBody CityCreateDTO cityDTO) {
+    City city = cityMapper.toEntityCreate(cityDTO);
     
     City cityPersisted = createCityPort.create(city);
     
@@ -80,7 +81,7 @@ public class CityController {
       @ApiResponse(code = 200, message = ResponseMessages.MESSAGE_200),
       @ApiResponse(code = 404, message = ResponseMessages.MESSAGE_404),
   })
-  ResponseEntity<List<CityDTO>> search(@Valid CityCriteriaDTO cityCriteria) {
+  ResponseEntity<List<CityResponseDTO>> search(@Valid CityCriteriaDTO cityCriteria) {
     List<City> cities = readCityPort.search(cityCriteria);
     
     return ResponseEntity.ok(cityMapper.toListDTO(cities));

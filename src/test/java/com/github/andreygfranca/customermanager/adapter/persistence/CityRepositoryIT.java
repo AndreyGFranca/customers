@@ -3,7 +3,7 @@ package com.github.andreygfranca.customermanager.adapter.persistence;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.andreygfranca.customermanager.IntegrationTestBase;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CityCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityCriteriaDTO;
 import com.github.andreygfranca.customermanager.core.domain.City;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

@@ -4,8 +4,8 @@ import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 import com.github.andreygfranca.customermanager.IntegrationTestBase;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CityDTO;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CustomerDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityResponseDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO;
 import com.github.andreygfranca.customermanager.core.domain.Gender;
 import java.time.LocalDate;
 import org.junit.jupiter.api.DisplayName;
@@ -20,12 +20,12 @@ class CustomerControllerIT extends IntegrationTestBase {
   @Tag("customer-it")
   @DisplayName("When creating a new customer then make sure it was actually created.")
   public void testCreateCustomer() {
-    CustomerDTO customer = CustomerDTO.builder()
+    CustomerResponseDTO customer = com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO.builder()
         .name("Sam Rogers")
         .age(57)
         .birthDate(LocalDate.of(1963, 10, 1))
         .gender(Gender.MALE.toString())
-        .city(CityDTO.builder().name("test").state("test1").build())
+        .city(CityResponseDTO.builder().name("test").state("test1").build())
         .build();
     
     given()
@@ -49,14 +49,14 @@ class CustomerControllerIT extends IntegrationTestBase {
   @Tag("customer-it")
   @DisplayName("When searching for a customer by id then make sure it was found.")
   public void testFindCustomerById() {
-    CustomerDTO customer = CustomerDTO.builder()
+    CustomerResponseDTO customer = com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO.builder()
         .name("Sam Rogers")
         .age(57)
         .birthDate(LocalDate.of(1963, 10, 1))
         .gender(Gender.MALE.toString())
         .build();
     
-    CustomerDTO created = createCustomer(customer);
+    CustomerResponseDTO created = createCustomer(customer);
     
     given()
         .contentType("application/json")
@@ -75,16 +75,16 @@ class CustomerControllerIT extends IntegrationTestBase {
   
   @Test
   @Tag("customer-it")
-  @DisplayName("When deleting a customer then ensure that will not be able to find that client again.")
+  @DisplayName("When deleting a customer then ensure that will not be able to find that customer again.")
   public void testDeleteCustomer() {
-    CustomerDTO customer = CustomerDTO.builder()
+    CustomerResponseDTO customer = com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO.builder()
         .name("Sam Rogers")
         .age(57)
         .birthDate(LocalDate.of(1963, 10, 1))
         .gender(Gender.MALE.toString())
         .build();
     
-    CustomerDTO created = createCustomer(customer);
+    CustomerResponseDTO created = createCustomer(customer);
     
     given()
         .contentType("application/json")
@@ -112,7 +112,7 @@ class CustomerControllerIT extends IntegrationTestBase {
   @Tag("customer-it")
   @DisplayName("When find a customer by name then ensure that will return.")
   public void testFindCustomerByName() {
-    CustomerDTO customer = CustomerDTO.builder()
+    CustomerResponseDTO customer = com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO.builder()
         .name("Sam Rogers")
         .age(57)
         .birthDate(LocalDate.of(1963, 10, 1))
@@ -140,14 +140,14 @@ class CustomerControllerIT extends IntegrationTestBase {
   @Tag("customer-it")
   @DisplayName("When updating a customer then make sure it was updated.")
   public void testUpdateCustomer() {
-    CustomerDTO customer = CustomerDTO.builder()
+    CustomerResponseDTO customer = com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerResponseDTO.builder()
         .name("Sam Rogers")
         .age(57)
         .birthDate(LocalDate.of(1963, 10, 1))
         .gender(Gender.MALE.toString())
         .build();
     
-    CustomerDTO created = createCustomer(customer);
+    CustomerResponseDTO created = createCustomer(customer);
     
     created.setName("Clesio dos Teclados");
     
@@ -184,13 +184,13 @@ class CustomerControllerIT extends IntegrationTestBase {
         .body("detail", equalTo("Customer with id 999 does not exists."));
   }
   
-  private CustomerDTO createCustomer(CustomerDTO customer) {
+  private CustomerResponseDTO createCustomer(CustomerResponseDTO customer) {
     return given()
         .body(customer)
         .contentType("application/json")
         .when()
         .post("/api/v1/customer")
-        .as(CustomerDTO.class);
+        .as(CustomerResponseDTO.class);
   }
   
 }

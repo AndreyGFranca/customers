@@ -1,6 +1,6 @@
 package com.github.andreygfranca.customermanager.core.port.input;
 
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CityCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityCriteriaDTO;
 import com.github.andreygfranca.customermanager.core.domain.City;
 import java.util.List;
 import java.util.Optional;
