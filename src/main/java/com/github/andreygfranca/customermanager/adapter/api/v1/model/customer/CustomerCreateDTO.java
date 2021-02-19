@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityResponseDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityCreateDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("Customer")
+@ApiModel("CustomerCreate")
 public class CustomerCreateDTO {
   
   @ApiModelProperty(example = "Galvão Bueno")
@@ -38,6 +38,6 @@ public class CustomerCreateDTO {
   @ApiModelProperty(example = "23")
   private Integer age;
   
-  private CityResponseDTO city;
+  private CityCreateDTO city;
   
 }
