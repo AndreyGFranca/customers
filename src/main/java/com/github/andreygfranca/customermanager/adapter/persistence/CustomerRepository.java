@@ -1,6 +1,6 @@
 package com.github.andreygfranca.customermanager.adapter.persistence;
 
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CustomerCriteriaDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.customer.CustomerCriteriaDTO;
 import com.github.andreygfranca.customermanager.adapter.persistence.specification.CustomerSpecificationFactory;
 import com.github.andreygfranca.customermanager.core.domain.Customer;
 import com.github.andreygfranca.customermanager.core.port.input.CustomerPersistencePort;

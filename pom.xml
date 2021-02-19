@@ -21,7 +21,6 @@
         <assertj.version>3.16.1</assertj.version>
         <mockito.core.version>3.3.3</mockito.core.version>
         <jackson.version>2.11.2</jackson.version>
-        <assertj.version>3.16.1</assertj.version>
         <io.springfox.swagger2.version>2.9.2</io.springfox.swagger2.version>
     </properties>
 
@@ -112,12 +111,6 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

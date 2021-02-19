@@ -4,7 +4,7 @@ import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 import com.github.andreygfranca.customermanager.IntegrationTestBase;
-import com.github.andreygfranca.customermanager.adapter.api.v1.model.CityDTO;
+import com.github.andreygfranca.customermanager.adapter.api.v1.model.city.CityResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ class CityControllerIT extends IntegrationTestBase {
   @Tag("city-it")
   @DisplayName("When creating a new city then make sure it was actually created.")
   public void testCreateCity() {
-    CityDTO city = CityDTO.builder()
+    CityResponseDTO city = CityResponseDTO.builder()
         .name("Jatai")
         .state("Goias")
         .build();
@@ -39,12 +39,12 @@ class CityControllerIT extends IntegrationTestBase {
   @Tag("city-it")
   @DisplayName("When searching for a city by id then make sure it was found.")
   public void testFindCityById() {
-    CityDTO city = CityDTO.builder()
+    CityResponseDTO city = CityResponseDTO.builder()
         .name("Jatai")
         .state("Goias")
         .build();
     
-    CityDTO created = createCity(city);
+    CityResponseDTO created = createCity(city);
     
     given()
         .contentType("application/json")
@@ -61,14 +61,14 @@ class CityControllerIT extends IntegrationTestBase {
   
   @Test
   @Tag("city-it")
-  @DisplayName("When deleting a city then ensure that will not be able to find that client again.")
+  @DisplayName("When deleting a city then ensure that will not be able to find that customer again.")
   public void testDeleteCity() {
-    CityDTO city = CityDTO.builder()
+    CityResponseDTO city = CityResponseDTO.builder()
         .name("Jatai")
         .state("Goias")
         .build();
     
-    CityDTO created = createCity(city);
+    CityResponseDTO created = createCity(city);
     
     given()
         .contentType("application/json")
@@ -96,12 +96,12 @@ class CityControllerIT extends IntegrationTestBase {
   @Tag("city-it")
   @DisplayName("When find a city by name then ensure that will return.")
   public void testFindCityByName() {
-    CityDTO city = CityDTO.builder()
+    CityResponseDTO city = CityResponseDTO.builder()
         .name("Rio Verde")
         .state("Goias")
         .build();
   
-    CityDTO created = createCity(city);
+    CityResponseDTO created = createCity(city);
   
     given()
         .contentType("application/json")
@@ -120,12 +120,12 @@ class CityControllerIT extends IntegrationTestBase {
   @Tag("city-it")
   @DisplayName("When find a city by state then ensure that will return.")
   public void testFindCityByState() {
-    CityDTO city = CityDTO.builder()
+    CityResponseDTO city = CityResponseDTO.builder()
         .name("Jatai")
         .state("Goias")
         .build();
   
-    CityDTO created = createCity(city);
+    CityResponseDTO created = createCity(city);
   
     given()
         .contentType("application/json")
@@ -140,13 +140,13 @@ class CityControllerIT extends IntegrationTestBase {
         .body("state[0]", equalTo("Goias"));
   }
   
-  private CityDTO createCity(CityDTO city) {
+  private CityResponseDTO createCity(CityResponseDTO city) {
     return given()
         .body(city)
         .contentType("application/json")
         .when()
         .post("/api/v1/city")
-        .as(CityDTO.class);
+        .as(CityResponseDTO.class);
   }
   
 }

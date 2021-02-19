@@ -1,4 +1,4 @@
-package com.github.andreygfranca.customermanager.adapter.api.v1.model;
+package com.github.andreygfranca.customermanager.adapter.api.v1.model.city;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
