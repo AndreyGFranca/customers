@@ -89,7 +89,7 @@ class CityControllerIT extends IntegrationTestBase {
         .statusCode(HttpStatus.NOT_FOUND.value())
         .body("status", equalTo(404))
         .body("title", equalTo("Not found"))
-        .body("detail", equalTo("City with id " +created.getId() + " does not exists."));
+        .body("detail", equalTo("City with id " + created.getId() + " does not exists."));
   }
   
   @Test
@@ -100,9 +100,9 @@ class CityControllerIT extends IntegrationTestBase {
         .name("Rio Verde")
         .state("Goias")
         .build();
-  
+    
     CityResponseDTO created = createCity(city);
-  
+    
     given()
         .contentType("application/json")
         .queryParam("name", "Rio Verde")
@@ -124,9 +124,9 @@ class CityControllerIT extends IntegrationTestBase {
         .name("Jatai")
         .state("Goias")
         .build();
-  
+    
     CityResponseDTO created = createCity(city);
-  
+    
     given()
         .contentType("application/json")
         .queryParam("state", "Goias")

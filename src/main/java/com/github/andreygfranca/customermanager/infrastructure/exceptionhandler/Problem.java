@@ -13,10 +13,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class Problem {
-
+  
   private Integer status;
   private String title;
   private String detail;
   private OffsetDateTime timestamp;
-
+  
 }
